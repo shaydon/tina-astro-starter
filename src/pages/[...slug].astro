@@ -1,5 +1,4 @@
 ---
-import { getCollection } from "astro:content";
 import client from "../../tina/__generated__/client";
 import Page from "../../tina/pages/Page";
 import Footer from "../components/Footer.astro";
@@ -7,21 +6,15 @@ import Header from "../components/Header.astro";
 import BaseHead from "../components/BaseHead.astro";
 import config from '../content/config/config.json';
 
-export async function getStaticPaths() {
-	const page = await getCollection("page");
-	return page.map((p) => ({
-		params: { slug: p.id },
-		props: {
-			getTinaProps: async () =>
-				client.queries.page({
-					relativePath: p.data.tinaInfo.relativePath,
-				}),
-		},
-	}));
-}
+export const prerender = false;
 
-const { getTinaProps } = Astro.props;
-const data = await getTinaProps();
+const { slug } = Astro.params;
+if (slug === 'favicon.ico') return new Response(null, {
+  status: 404,
+  statusText: 'Not found'
+});
+const data = await (slug ? client.queries.page({relativePath: `${slug}.mdx`}) : undefined);
+if (!data) return Astro.redirect('/404');
 ---
 
 <!doctype html>
@@ -35,4 +28,3 @@ const data = await getTinaProps();
 		<Footer />
 	</body>
 </html>
-
