@@ -8,7 +8,7 @@ export const BlogCollection: Collection = {
   format: "mdx",
   ui: {
     router({ document }) {
-      return `/blog/${document._sys.filename}`;
+      return `/blog/${document._sys.breadcrumbs.join('/')}`;
     },
   },
   fields: [

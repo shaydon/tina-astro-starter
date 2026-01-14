@@ -7,7 +7,7 @@ export const PageCollection: Collection = {
   format: "mdx",
   ui: {
     router: ({ document }) => {
-      return `/${document._sys.filename}`;
+      return `/${document._sys.breadcrumbs.join('/')}`;
     },
   },
   fields: [
