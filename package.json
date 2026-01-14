@@ -21,7 +21,12 @@
     "tinacms": "^3.1.0"
   },
   "devDependencies": {
-    "@tinacms/cli": "^1.11.0",
+    "@tinacms/cli": "^2.1.0",
     "@types/node": "^22.18.12"
+  },
+  "overrides": {
+    "tinacms": "https://github.com/shaydon/tinacms/releases/download/v2.3.20-shaydon.1/tinacms-3.3.0.tgz",
+    "@tinacms/app": "https://github.com/shaydon/tinacms/releases/download/v2.3.20-shaydon.1/tinacms-app-2.3.20.tgz",
+    "@tinacms/cli": "https://github.com/shaydon/tinacms/releases/download/v2.3.20-shaydon.1/tinacms-cli-2.1.0.tgz"
   }
 }
