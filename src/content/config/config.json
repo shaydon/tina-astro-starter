@@ -6,12 +6,12 @@
   },
   "nav": [
     {
-      "title": "Blog",
-      "link": "/blog"
-    },
-    {
       "title": "Home",
       "link": "/"
+    },
+    {
+      "title": "Blog",
+      "link": "/blog"
     },
     {
       "title": "About",
