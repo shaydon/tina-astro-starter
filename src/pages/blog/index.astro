@@ -3,12 +3,13 @@ import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import config from '../../content/config/config.json';
-import { getCollection } from 'astro:content';
 import FormattedDate from '../../components/FormattedDate.astro';
+import client from "../../../tina/__generated__/client";
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const blogsResponse = await client.queries.blogConnection();
+const posts = blogsResponse.data.blogConnection.edges?.sort(
+	(a, b) => Date.parse(b?.node?.pubDate || '') - Date.parse(a?.node?.pubDate || ''),
+) || [];
 
 ---
 
@@ -94,11 +95,11 @@ const posts = (await getCollection('blog')).sort(
 					{
 						posts.map((post) => (
 							<li>
-								<a href={`/blog/${post.id}/`}>
-									<img width={720} height={360} src={post.data.heroImage} alt="" />
-									<h4 class="title">{post.data.title}</h4>
+								<a href={`/blog/${post?.node?._sys.relativePath.replace(/\.mdx?$/, '')}/`}>
+									<img width={720} height={360} src={post?.node?.heroImage} alt="" />
+									<h4 class="title">{post?.node?.title}</h4>
 									<p class="date">
-										<FormattedDate date={post.data.pubDate} />
+										<FormattedDate date={new Date(post?.node?.pubDate || '')} />
 									</p>
 								</a>
 							</li>

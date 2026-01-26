@@ -6,9 +6,15 @@ import Header from "../components/Header.astro";
 import BaseHead from "../components/BaseHead.astro";
 import config from '../content/config/config.json';
 
-export const prerender = false;
+export async function getStaticPaths() {
+	const pagesResponse = await client.queries.pageConnection();
+	const pages = pagesResponse.data.pageConnection.edges;
+	return pages?.flatMap((page) => !!page?.node ? {
+		params: { slug: page.node._sys.relativePath.replace(/\.mdx?$/, '') }
+	} : []) || [];
+}
 
-const { slug } = Astro.params;
+const {slug} = Astro.params;
 if (slug === 'favicon.ico') return new Response(null, {
   status: 404,
   statusText: 'Not found'

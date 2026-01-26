@@ -11,4 +11,5 @@ export default defineConfig({
   site: process.env.SITE_URL || `https://${process.env.VERCEL_URL}`,
   integrations: [mdx(), sitemap(), react(), tinaDirective()],
   adapter: vercel(),
+  output: 'server'
 });
