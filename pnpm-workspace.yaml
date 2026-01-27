@@ -2,7 +2,9 @@ onlyBuiltDependencies:
   - better-sqlite3
   - esbuild
   - sharp
+  - workerd
+
 overrides:
-  "tinacms": "https://github.com/shaydon/tinacms/releases/download/v3.3.2-shaydon.1/tinacms-3.3.2.tgz"
-  "@tinacms/app": "https://github.com/shaydon/tinacms/releases/download/v3.3.2-shaydon.1/tinacms-app-2.3.22.tgz"
-  "@tinacms/cli": "https://github.com/shaydon/tinacms/releases/download/v3.3.2-shaydon.1/tinacms-cli-2.1.2.tgz"
+  '@tinacms/app': https://github.com/shaydon/tinacms/releases/download/v3.3.2-shaydon.1/tinacms-app-2.3.22.tgz
+  '@tinacms/cli': https://github.com/shaydon/tinacms/releases/download/v3.3.2-shaydon.1/tinacms-cli-2.1.2.tgz
+  tinacms: https://github.com/shaydon/tinacms/releases/download/v3.3.2-shaydon.1/tinacms-3.3.2.tgz

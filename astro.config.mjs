@@ -4,12 +4,13 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
 import tinaDirective from "./astro-tina-directive/register";
-import vercel from '@astrojs/vercel';
+import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
   site: process.env.SITE_URL || `https://${process.env.VERCEL_URL}`,
   integrations: [mdx(), sitemap(), react(), tinaDirective()],
-  adapter: vercel(),
-  output: process.env.VERCEL_ENV === 'production' ? 'static' : 'server'
+  adapter: cloudflare(),
+  output: 'server'
+  //output: process.env.VERCEL_ENV === 'production' ? 'static' : 'server'
 });
