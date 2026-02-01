@@ -21,6 +21,8 @@ if (slug === 'favicon.ico') return new Response(null, {
 });
 const data = await (slug ? client.queries.page({relativePath: `${slug}.mdx`}) : undefined);
 if (!data) return Astro.redirect('/404');
+
+const renderMode = Astro.isPrerendered ? "PRE-RENDERED" : "ON-DEMAND";
 ---
 
 <!doctype html>
@@ -31,6 +33,7 @@ if (!data) return Astro.redirect('/404');
 	<body>
 		<Header />
 				<Page {...data} client:tina />
+				<p>Render mode: {renderMode}</p>
 		<Footer />
 	</body>
 </html>

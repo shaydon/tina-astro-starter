@@ -11,6 +11,5 @@ export default defineConfig({
   site: process.env.SITE_URL || `https://${process.env.VERCEL_URL}`,
   integrations: [mdx(), sitemap(), react(), tinaDirective()],
   adapter: cloudflare(),
-  output: 'server'
-  //output: process.env.VERCEL_ENV === 'production' ? 'static' : 'server'
+  output: process.env.ENVIRONMENT === 'preview' ? 'server' : 'static'
 });
