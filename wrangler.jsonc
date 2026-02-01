@@ -12,5 +12,15 @@
 	},
 	"observability": {
     "enabled": true
+  },
+  "vars": {
+    "ENVIRONMENT": "production"
+  },
+  "env": {
+    "preview": {
+      "vars": {
+        "ENVIRONMENT": "preview"
+      }
+    }
   }
 }
